@@ -18,6 +18,9 @@ const noteInitialState = {
   Content: "",
   Title: "",
   idCard: 0,
+  AlertShow: false,
+  AlertName: "",
+  AlertNameStatus: "",
 };
 
 const allReducer = (state = noteInitialState, action) => {
@@ -27,13 +30,30 @@ const allReducer = (state = noteInitialState, action) => {
         noteContent: action.noteContent,
         title: action.noteTitle,
       });
-      alert("Bạn đã thêm note thành công");
-      return { ...state, isEdit: 0 };
+
+      return {
+        ...state,
+        isEdit: 0,
+        AlertShow: true,
+        AlertName: "Bạn đã thêm ghi chú thành công",
+        AlertNameStatus: "success",
+      };
     case "DELETENOTE":
-      alert("Bạn đã xóa note thành công");
-      return remove(ref(database, "/DataNote/" + action.idNoteItem));
+      remove(ref(database, "/DataNote/" + action.idNoteItem));
+      return {
+        ...state,
+        AlertShow: true,
+        AlertName: "Bạn đã xóa ghi chú thành công",
+        AlertNameStatus: "danger",
+      };
     case "SHOWADD":
-      return { ...state, isEdit: !state.isEdit, isShowButon: 1, Content: "", Title: "" };
+      return {
+        ...state,
+        isEdit: !state.isEdit,
+        isShowButon: 1,
+        Content: "",
+        Title: "",
+      };
     case "SHOWUPDATENOTE":
       return {
         ...state,
@@ -51,7 +71,18 @@ const allReducer = (state = noteInitialState, action) => {
       const updates = {};
       updates["/DataNote/" + state.idCard] = postData;
       update(ref(database), updates);
-      return { ...state, isEdit: false };
+      return {
+        ...state,
+        isEdit: false,
+        AlertShow: true,
+        AlertName: "Bạn đã cập nhật ghi chú thành công",
+        AlertNameStatus: "info",
+      };
+    case "DISMISSALERT":
+      return {
+        ...state,
+        AlertShow: false,
+      };
     default:
       return state;
   }

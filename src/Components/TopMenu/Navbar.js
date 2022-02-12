@@ -10,7 +10,7 @@ class Navbar extends Component {
   render() {
     return (
       <nav className="navbar navbar-expand-sm navbar-dark bg-dark mb-4">
-        <a className="navbar-brand" href="">
+        <a className="navbar-brand" href="#">
           Thang chay
         </a>
         <button
@@ -25,14 +25,14 @@ class Navbar extends Component {
         <div className="collapse navbar-collapse" id="collapsibleNavId">
           <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
             <li className="nav-item active">
-              <a className="nav-link" href="">
+              <a className="nav-link" href="#">
                 Trang chủ
               </a>
             </li>
             <li className="nav-item">
               <a
                 className="nav-link"
-                href=""
+                href="#"
                 onClick={(e) => this.HandleShowAdd(e)}
               >
                 Thêm ghi chú

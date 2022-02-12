@@ -18,7 +18,7 @@ class Card extends Component {
               >
                 {this.props.Title}
               </a>
-              <div className="btn-form">
+              <div className="btn-group">
                 <button
                   type="button"
                   className="btn btn-outline-warning"
